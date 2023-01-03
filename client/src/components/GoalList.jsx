@@ -40,7 +40,7 @@ const GoalList = ({ goals, updateGoals, gGoals, date }) => {
 
   return (
     <div>
-      <h1>Working Towards</h1>
+      <h1>Goals for the Day</h1>
       <GoalForm onSubmit={addGoal} date={date} />
       <Goal
         goals={goals}
