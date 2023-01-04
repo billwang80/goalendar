@@ -28,7 +28,7 @@ function Goal({ goals, completeGoal, removeGoal, updateGoal, date }) {
   return (
     goals.map((goal, index) => (
       <div 
-        className={goal.isComplete ? 'goal-row complete' : 'goal-row'} 
+        className={goal.isComplete ? 'goal-row goal-complete' : 'goal-row'} 
         key={index}
       >
         <div key={goal.id} onClick={() => completeGoal(goal.id)}>

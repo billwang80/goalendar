@@ -44,3 +44,10 @@
   color: limegreen !important;
 }
 
+.goal-complete {
+  background-color: cornflowerblue;
+}
+
+.progression-complete {
+  background-color: cornflowerblue;
+}
