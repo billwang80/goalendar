@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import isSameDay from 'date-fns/isSameDay';
 
@@ -8,16 +8,13 @@ import GoalList from './GoalList'
 const AppBody = () => {
   const [date, setDate] = useState(new Date())
   const [gGoals, setGGoals] = useState([]) // global goals
-  const [dateGoals, setDateGoals] = useState([]) // pass filtered goals to child
 
   const updateDate = (newDate) => {
     setDate(newDate)
-    setDateGoals(gGoals.filter(goal => (isSameDay(goal.date, newDate))))
   }
 
   const updateGoals = (newGoals) => {
     setGGoals(newGoals)
-    setDateGoals(newGoals.filter(goal => (isSameDay(goal.date, date))))
   }
 
   return (
@@ -26,7 +23,7 @@ const AppBody = () => {
         setDate={updateDate} 
       />
       <GoalList 
-        goals={dateGoals}
+        goals={gGoals.filter(goal => (isSameDay(goal.date, date)))}
         updateGoals={updateGoals}
         gGoals={gGoals}
         date={date} 
