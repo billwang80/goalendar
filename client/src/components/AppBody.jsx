@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { isSameDay, differenceInDays } from 'date-fns';
 
@@ -14,12 +14,10 @@ const AppBody = () => {
 
   const updateDate = (newDate) => {
     setDate(newDate)
-    setDateGoals(gGoals.filter(goal => (isSameDay(goal.date, newDate))))
   }
 
   const updateGoals = (newGoals) => {
     setGGoals(newGoals)
-    setDateGoals(newGoals.filter(goal => (isSameDay(goal.date, date))))
   }
 
   const isSameOrBefore = (date1, date2) => {
@@ -46,7 +44,7 @@ const AppBody = () => {
         setDate={updateDate} 
       />
       <GoalList 
-        goals={dateGoals}
+        goals={gGoals.filter(goal => (isSameDay(goal.date, date)))}
         updateGoals={updateGoals}
         gGoals={gGoals}
         date={date} 
