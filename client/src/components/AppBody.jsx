@@ -9,7 +9,6 @@ import ProgressionList from './ProgressionList';
 const AppBody = () => {
   const [date, setDate] = useState(new Date())
   const [gGoals, setGGoals] = useState([]) // global goals
-  const [dateGoals, setDateGoals] = useState([]) // pass filtered goals to child
   const [progressions, setProgressions] = useState([]) // pass filtered progressions to child
 
   const updateDate = (newDate) => {
