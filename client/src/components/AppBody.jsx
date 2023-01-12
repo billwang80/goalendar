@@ -9,7 +9,12 @@ import ProgressionList from './ProgressionList';
 const AppBody = () => {
   const [date, setDate] = useState(new Date())
   const [gGoals, setGGoals] = useState([]) // global goals
-  const [progressions, setProgressions] = useState([]) // pass filtered progressions to child
+  /*
+    progressions only save the ones that are completed
+    progressions are an object of objects with key = goalId
+  */
+  // const [progressions, setProgressions] = useState([]) 
+  const [progressions, setProgressions] = useState({})
 
   const updateDate = (newDate) => {
     setDate(newDate)
@@ -23,19 +28,39 @@ const AppBody = () => {
     return differenceInDays(date1, date2) <= 0;
   }
 
-  // problem right now
-  // progressions will not save when new date is selected
-  // SHOULD I: 
-  // save all progressions in a new state? similar to gGoals
-  // 
-  const updateProgressions = () => {
-    const filteredGoals = gGoals.filter(goal => (isSameOrBefore(date, goal.date)))
-    setProgressions(filteredGoals.map(goal => ({
-      id: goal.id,
-      text: goal.text,
-      date: date
-    })))
+  console.log(progressions)
+  console.log(Object.keys(progressions).length)
+
+  const updateProgressions = (newProgression) => {
+    let newProgressions = {}
+    if (newProgression[newProgression.key].isComplete) {
+      newProgressions = { ...progressions, ...newProgression }
+    } else {
+      newProgressions = { ...progressions }
+      delete newProgressions[newProgression.key]
+    }
+    delete newProgressions.key
+    setProgressions(newProgressions)
+    console.log("main progress", progressions)
   }
+
+  const progressionProp = gGoals.filter(goal => (isSameOrBefore(date, goal.date))).map(
+    progression => (progression.id in progressions ? 
+      {
+        id: progression.id,
+        text: progression.text,
+        date: date,
+        isComplete: true
+      } 
+      : 
+      {
+        id: progression.id,
+        text: progression.text,
+        date: date,
+        isComplete: false
+      }
+    )
+  )
 
   return (
     <div>
@@ -47,6 +72,10 @@ const AppBody = () => {
         updateGoals={updateGoals}
         gGoals={gGoals}
         date={date} 
+      />
+      <ProgressionList 
+        progressions={progressionProp}
+        updateProgressions={updateProgressions}
       />
     </div>
   )
