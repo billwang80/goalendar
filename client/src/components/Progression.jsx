@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '../styles/Progression.css'
+
 /*
   Progressions designs:
   Design 1: save progression as goalId. checked, date
@@ -31,6 +33,7 @@ import React from 'react'
     }
   }
 */
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 const Progression = ({ progressions, completeProgression }) => {
   return (
@@ -40,7 +43,8 @@ const Progression = ({ progressions, completeProgression }) => {
         key={index}
       >
         <div key={progression.id} onClick={() => completeProgression(progression.id)}>
-          {progression.text}
+          <div>{progression.text}</div>
+          <div>{progression.date.toLocaleDateString("en-US", options)}</div>
         </div>
       </div>
     ))

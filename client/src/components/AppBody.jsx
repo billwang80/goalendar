@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { isSameDay, differenceInDays } from 'date-fns';
+import { format, isSameDay, differenceInDays } from 'date-fns';
 
 import Calendar from './Calendar'
 import GoalList from './GoalList'
@@ -28,7 +28,8 @@ const AppBody = () => {
     return differenceInDays(date1, date2) <= 0;
   }
 
-  console.log(progressions)
+  console.log()
+  console.log("test", progressions)
   console.log(Object.keys(progressions).length)
 
   const updateProgressions = (newProgression) => {
@@ -45,17 +46,19 @@ const AppBody = () => {
   }
 
   const progressionProp = gGoals.filter(goal => (isSameOrBefore(date, goal.date))).map(
-    progression => (progression.id in progressions ? 
+    goal => (goal.id + '/' + format(date, 'yyyy/dd/MM') in progressions ? 
       {
-        id: progression.id,
-        text: progression.text,
+        id: goal.id + '/' + format(date, 'yyyy/dd/MM'),
+        // id: goal.id,
+        text: goal.text,
         date: date,
         isComplete: true
       } 
       : 
       {
-        id: progression.id,
-        text: progression.text,
+        id: goal.id + '/' + format(date, 'yyyy/dd/MM'),
+        // id: goal.id,
+        text: goal.text,
         date: date,
         isComplete: false
       }

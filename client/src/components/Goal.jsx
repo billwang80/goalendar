@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 import GoalForm from './GoalForm'
 
 import EditIcon from '@mui/icons-material/Edit';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+
+import '../styles/Goal.css'
 
 function Goal({ goals, completeGoal, removeGoal, updateGoal, date }) {
   const [edit, setEdit] = useState({

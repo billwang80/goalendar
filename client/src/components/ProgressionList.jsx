@@ -3,7 +3,8 @@ import React from 'react'
 import Progression from './Progression'
 
 const ProgressionList = ({ progressions, updateProgressions }) => {
-  
+
+  console.log("progressions", progressions)
   const completeProgression = progressionId => {
     let newProgression = progressions.filter(progression => progressionId === progression.id)[0]
     newProgression.isComplete = !newProgression.isComplete
