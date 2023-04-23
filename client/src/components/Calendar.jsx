@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker'
 
-import { Badge } from '@mui/material';
-import { Button } from '@mui/material';
-import { PickersDay } from '@mui/x-date-pickers/PickersDay';
-import CheckIcon from '@mui/icons-material/Check';
+import { Badge } from '@mui/material'
+import { Button } from '@mui/material'
+import { PickersDay } from '@mui/x-date-pickers/PickersDay'
+import CheckIcon from '@mui/icons-material/Check'
+
+import '../styles/Calendar.css'
 
 const Calendar = ({ setDate }) => {
   const [value, setValue] = useState(new Date());
@@ -21,8 +23,8 @@ const Calendar = ({ setDate }) => {
           openTo="day"
           value={value}
           onChange={(newValue) => {
-            setValue(newValue);
-            setDate(newValue);
+            setValue(newValue)
+            setDate(newValue)
           }}
           renderInput={(params) => <TextField {...params} />}
           renderDay={(day, _value, DayComponentProps) => {

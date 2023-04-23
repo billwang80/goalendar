@@ -24,6 +24,9 @@ const GoalList = ({ goals, updateGoals, gGoals, date }) => {
   const removeGoal = id => {
     const removeArrGlobal = gGoals.filter(goal => goal.id !== id)
 
+    // TODO remove progressions
+    
+
     updateGoals(removeArrGlobal)
   }
 

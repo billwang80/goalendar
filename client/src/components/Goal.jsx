@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 import GoalForm from './GoalForm'
 
 import EditIcon from '@mui/icons-material/Edit';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+
+import '../styles/Goal.css'
 
 function Goal({ goals, completeGoal, removeGoal, updateGoal, date }) {
   const [edit, setEdit] = useState({
@@ -28,7 +30,7 @@ function Goal({ goals, completeGoal, removeGoal, updateGoal, date }) {
   return (
     goals.map((goal, index) => (
       <div 
-        className={goal.isComplete ? 'goal-row complete' : 'goal-row'} 
+        className={goal.isComplete ? 'goal-row goal-complete' : 'goal-row'} 
         key={index}
       >
         <div key={goal.id} onClick={() => completeGoal(goal.id)}>
